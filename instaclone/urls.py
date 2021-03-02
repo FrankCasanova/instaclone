@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
+from posts.views import list_posts
 from django.urls import path
 from .views import hello_world, sort, say_hi
+from posts import views as posts_views
 
 
 urlpatterns = [
@@ -23,6 +25,8 @@ urlpatterns = [
     #este es el camino hacia ese lugar/vista
     path('hello-world/', hello_world),
     path('sort/',sort),
-    path('hi/<str:name>/<int:age>', say_hi) 
+    path('hi/<str:name>/<int:age>', say_hi), 
+
+    path('posts/', posts_views.list_posts),
     
 ]
