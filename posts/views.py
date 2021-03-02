@@ -1,41 +1,62 @@
 #django
 from django.shortcuts import render
-from django.http import HttpResponse
 from datetime import datetime
 
 posts = [
 
     {
-        'name': 'Mont Blanc',
-        'user': 'troglodita',
+        
+        'title': 'Mont Blanc',
+        'user': {
+            'name': 'Mont Blantesco Pradez Biso',
+            'picture': 'https://picsum.photos/id/223/60/60'
+        },
         'timestamp' : datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
-        'picture' : 'https://picsum.photos/id/237/200/200',
-                                        
+        'photo': 'https://picsum.photos/id/234/200/200'                                   
     },
     {
-        'name': 'Pedro Pedrin',
-        'user': 'Romulo',
+        
+        'title': 'Perez Loco',
+        'user': {
+            'name': 'Perito Perez Delirio',
+            'picture': 'https://picsum.photos/id/244/60/60'
+        },
         'timestamp' : datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
-        'picture' : 'https://picsum.photos/id/238/200/200',
-                                        
+        'photo': 'https://picsum.photos/id/233/200/200'                                   
     },
     {
-        'name': 'Bianca',
-        'user': 'Bica',
+        
+        'title': 'Rumualdo Fons',
+        'user': {
+            'name': 'Rumualdo Bildefonso Fonso',
+            'picture': 'https://picsum.photos/id/243/60/60'
+        },
         'timestamp' : datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
-        'picture' : 'https://picsum.photos/id/239/200/200',
-                                        
-    }
+        'photo': 'https://picsum.photos/id/232/200/200'                                   
+    },
+    {
+        
+        'title': 'Regina Andares',
+        'user': {
+            'name': 'Regina Andares Cifuentes',
+            'picture': 'https://picsum.photos/id/242/60/60'
+        },
+        'timestamp' : datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
+        'photo': 'https://picsum.photos/id/231/200/200'                                   
+    },
+    {
+        
+        'title': 'Benito Caméla',
+        'user': {
+            'name': 'Benito Lopez Peroto Caméla',
+            'picture': 'https://picsum.photos/id/241/60/60'
+        },
+        'timestamp' : datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
+        'photo': 'https://picsum.photos/id/230/200/200'                                   
+    },
+    
 ]
 
 def list_posts(request):
-    content = []
-    [content.append("""
-
-        <p><strong>{name}</strong></p>
-        <p><small>{user} -  <i>{timestamp}</i></small></p>
-        <figure> <img src="{picture}" alt=""> </figure>
-
-    """.format(**post)) for post in posts]
-    return HttpResponse('<br>'.join(content))
+  return render(request, 'feed.html', {'posts': posts})
 # Create your views here.
