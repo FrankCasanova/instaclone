@@ -15,13 +15,14 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
-from .views import hello_world, sort
+from .views import hello_world, sort, say_hi
 
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     #este es el camino hacia ese lugar/vista
     path('hello-world/', hello_world),
-    path('sort/',sort) 
+    path('sort/',sort),
+    path('hi/<str:name>/<int:age>', say_hi) 
     
 ]

@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 
 #utilities
 from datetime import datetime
-
+import json
 
 
 
@@ -19,4 +19,18 @@ def hello_world(request): #aquí creamos el lugar/vista
 
 def sort(request):
     numbers = sorted([int(i) for i in request.GET['numbers'].split(',')])
-    return JsonResponse({'lista ordenada':str(numbers)})
+    data = {
+        'status': 'ok',
+        'numbers':numbers,
+        'message':'Integers sorted successfully'
+    }
+    return HttpResponse(json.dumps(data, indent=4), content_type='application/json')
+
+def say_hi(request,name,age):
+    
+    if age < 12:
+        message = f'sorry {name} yo\'e not allowed here'
+    else:
+        message = f'hi {name} welcome'
+
+    return HttpResponse(message)        
