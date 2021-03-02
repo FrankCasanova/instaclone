@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.contrib import admin
+from django.contrib import admin
+from django.conf import settings
 from posts.views import list_posts
+from django.conf.urls.static import static
 from django.urls import path
 from .views import hello_world, sort, say_hi
 from posts import views as posts_views
@@ -23,10 +25,13 @@ from posts import views as posts_views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     #este es el camino hacia ese lugar/vista
+
+    path('admin/', admin.site.urls),
+
     path('hello-world/', hello_world),
     path('sort/',sort),
     path('hi/<str:name>/<int:age>', say_hi), 
 
     path('posts/', posts_views.list_posts),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
