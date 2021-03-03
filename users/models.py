@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-
+#https://docs.djangoproject.com/en/3.1/topics/auth/customizing/
+#customizar para crear modelos de usuario
 class Profile(models.Model):
 
 
