@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 #models
+from posts.models import Post
 from users.models import Profile
 # Register your models here.
 @admin.register(Profile)
@@ -66,5 +67,16 @@ class UserAdmin(BaseUserAdmin):
 
     )
 
+
+
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'photo', )
+
+
+
+
+
+admin.site.register(Post, PostAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)    
