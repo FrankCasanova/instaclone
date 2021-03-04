@@ -11,7 +11,7 @@
       
     {% endif %}
 
-    <form method="POST" action=" {% url 'login' %} ">
+    <form method="POST" action=" {% url 'users:login' %} ">
 
     {% csrf_token %}
 
@@ -23,6 +23,8 @@
         </div>
     
     <button class="btn btn-primary btn-block mt-5" type="submit">SIG IN</button>
+
+    <p class="mt-4">Don't have an account yet? <a href="{% url "users:signup" %}">Sign up here.</a></p>
 
     </form>
 {% endblock container %}
