@@ -69,36 +69,9 @@ class LogOutView(LoginRequiredMixin,auth_view.LogoutView):
 
 
 
-def logout_view(request):
-    logout(request) 
-    return redirect('users:login')
 
 
 
-def signup(request):
-
-    if request.method == 'POST':
-        form = SingUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('users:login')
-
-    else:
-        form = SingUpForm()
-
-    return render(
-
-        request=request,
-        template_name='users/signup.html',
-        context={
-            'form': form
-        }
 
 
-
-    )            
-
-
-
-             
 
