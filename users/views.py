@@ -9,6 +9,7 @@ from django.urls.base import reverse_lazy
 from django.views.generic import DetailView, FormView
 from django.views.generic.edit import UpdateView 
 from django.urls import reverse
+from django.contrib.auth import views as auth_view
 #form
 from users.forms import ProfileForm, SingUpForm
 
@@ -57,34 +58,16 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
         return reverse('users:detail', kwargs={'username': username}) 
 
 
-        
+class LoginView(auth_view.LoginView):
+
+    template_name = 'users/login.html'
 
 
-    pass
+class LogOutView(LoginRequiredMixin,auth_view.LogoutView):
+
+    template_name = 'users/logged_out.html'
 
 
-
-
-
-
-def login_view(request):
-
-    if request.method == 'POST':
-        
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = authenticate(request, username=username, password=password)
-
-        if user:
-            login(request,user)
-            return redirect('posts:feed')
-        else:
-            return render(request, 'users/login.html', {'error': 'Invalid username or password' })    
-       
-
-
-    return render(request, 'users/login.html')
 
 def logout_view(request):
     logout(request) 
